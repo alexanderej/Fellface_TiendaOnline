@@ -1,0 +1,73 @@
+{% include 'cabecera.html' %} <!--esto es de flask-->
+<br> <br> <br><br> <br>
+<!--
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src="img/{{ producto[2] }}" alt="Title">
+                <div class="card-body">
+                    <h4 class="card-title">Cremas</h4>
+                    <p class="card-text">{{ producto[1] }}</p>
+                    <p class="card-text">
+                        <a name="" id="" class="btn btn-primary" href="{{ producto[3] }}" role="button">Ir al Catalogo</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+-->
+<div class="row borde">
+    
+    <br><br><br><br><br>
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="{{url_for('static', filename='assets/imgCatalogo/facial.jpg')}}" alt="Title">
+            <div class="card-body">
+                <h4 class="card-title">Productos faciales</h4>
+                <p class="card-text">Los productos faciales ayudan a mantener la humedad y elasticidad de la piel,
+                    previniendo la sequedad y otorgando un cierto nivel de protección al rostro</p>
+                <p class="card-text">
+                    <a name="" id="" class="btn btn-primary" href="/faciales/1" role="button">Ir al Catalogo</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="{{url_for('static', filename='assets/imgCatalogo/cabello.jpg')}}"
+                alt="Title">
+            <div class="card-body">
+                <h4 class="card-title">Productos para cabello</h4>
+                <p class="card-text">Actualmente existe una infinidad de productos dedicados al cuidado del cabello y a
+                    mantener su estética y salud, cada uno cumple con distintas funciones que sin duda te dan resultados
+                    increíbles</p>
+                <p class="card-text">
+                    <a name="" id="" class="btn btn-primary" href="/cabello/1" role="button">Ir al Catalogo</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="{{url_for('static', filename='assets/imgCatalogo/perfume.jpg')}}"
+                alt="Title">
+            <div class="card-body">
+                <h4 class="card-title">Perfumes</h4>
+                <p class="card-text">Los beneficios de usar perfume son varios, independiente de brindar un olor
+                    agradable; nos da seguridad, personalidad y hasta nos puede hacer sentir más seductores.</p>
+                <p class="card-text">
+                    <a name="" id="" class="btn btn-primary" href="/perfumes/1" role="button">Ir al Catalogo</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% include 'pie.html' %}

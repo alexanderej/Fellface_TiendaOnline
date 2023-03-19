@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="spanish">
+
+<head>
+    <title>Tienda</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init">
+
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+
+    </script>
+
+
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/">FellFace</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url_for('contacto.contacto')}}">Nosotros</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <a class="nav-item nav-link" href="/">INICIO</a>
+                    {% if 'login' in session and session['tipoUser']=='cliente' %}
+                    <a class="nav-item nav-link" href="{{url_for('catalogo.cat')}}">PRODUCTOS</a>
+
+                    <a class="nav-item nav-link" href="{{url_for('autenticar.logout')}}">Cerrar Sesión</a>
+                    {% elif 'login' in session and session['tipoUser']=='admin' %}
+                    <a class="nav-item nav-link" href="{{url_for('administrarProductos.cat_ad')}}">PRODUCTOS</a>
+
+                    <a class="nav-item nav-link" href="{{url_for('autenticar.logout')}}">Cerrar Sesión</a>
+
+                    {% else %}
+                    <a class="nav-item nav-link" href="{{url_for('catalogo.cat')}}">PRODUCTOS</a>
+                    <a class="nav-item nav-link" href="{{url_for('autenticar.login')}}">LOGIN</a>
+                    {% endif %}
+                    
+                </ul>
+                
+
+            </div>
+            
+        </div>
+        {% if session['tipoUser']!='admin' %}
+
+        <a class="nav-item nav-link" href="{{url_for('cart.mostrarCarrito')}}">
+            Carrito  {{num}} <img src="/static/assets/img/cart.png" width="50" alt="">
+        </a>
+
+        {% endif %}
+    </nav>
+
+</body>
+
+</html>

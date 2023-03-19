@@ -1,0 +1,44 @@
+{% include 'cabecera.html' %} <!--esto es de flask-->
+<br> <br> <br> <br> <br>
+<div class="p-5 mb-4 bg-light">
+    <div class="container">
+      <h1 class="display-3">Productos agregados al carrito</h1>
+      <p class="lead">Aqui podrá sacar productos del carrito o proceder a comprar</p>
+      <hr class="my-2">
+      <p class="lead">Total a pagar: $ {{pagar}}</p>
+      
+    </div>
+  </div>
+
+  <div class="row">
+    {% for i in range(0,num) %}
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="static/assets/img_p/{{ carrito.productos[i].imagen }}" alt="Title">
+            <div class="card-body">
+                <h4 class="card-title">{{ carrito.productos[i].nombre }}</h4>
+                <p class="card-text">Cantidad agregada: {{ carrito.productos[i].cantidad }} unidades</p>
+                <p class="card-text">Precio: $ {{ carrito.productos[i].precio_total }}</p>
+                <p class="card-text">Tipo: {{ carrito.productos[i].tipo }}</p>
+                <p class="card-text"></p>
+               
+            </div>
+            <form action="{{url_for('cart.quitar')}}" method="post">
+              <input value="{{carrito.productos[i].id}}" type="hidden" name="txtID" id="txtID">
+              <input value="{{carrito.productos[i].cantidad}}" type="hidden" name="cantidad" id="cantidad">
+              <input value="{{i}}" type="hidden" name="posicion" id="posicion">              
+              <button type="submit" class="btn btn-danger">Sacar del carrito</button>
+          </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+{% if num>0 %}
+<p class="lead text-center">
+  <a class="btn btn-primary btn-lg" href="{{url_for('cart.comprar')}}" role="button">Empezar la compra</a>
+</p>
+{% endif %}
+
+
+{% include 'pie.html' %} 

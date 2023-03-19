@@ -1,0 +1,132 @@
+{% include 'cabecera.html' %}
+<br> <br> <br><br> <br>
+
+<section class="container"></section>
+    
+    <div class="row">
+        <!-- <div class="text-center">
+            <h1 class="text-primary card-title mb-4">Gestion de productos</h1>
+        </div> -->
+        <!-- <div class="col-md-0"></div> -->
+        <div class="col-md-4" id="columna">
+            <div class="text-center">
+                <h3 class="text-primary">Modificar Producto</h3>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Ingrese los Datos a cambiar del producto
+                </div>
+                <div class="card-body">
+                    <form action="/actualizar" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <input value="{{producto[0]}}" type="hidden" name="txtID" id="txtID">
+                          <label for="txtNombre" class="form-label">Nombre:</label>
+                          <input type="text"
+                            class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Ingrese el nombre del producto" value="{{producto[1]}}" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="txtImagen" class="form-label">Imagen:</label>
+                          <input type="file"
+                            class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione la imagen">
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="txtdes" class="form-label">Descripción del producto</label>
+                          <input type="text"
+                            class="form-control" name="txtdes" id="txtdes" aria-describedby="helpId" placeholder="Escriba una descripcion del producto" value="{{producto[5]}}" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="Tipo" class="form-label">Tipo de producto</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="btnTipo" id="flexRadioDefault1" value="productos faciales"
+                                {% if producto[3] == "productos faciales" %}
+                                checked {% endif %}>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    1. productos faciales
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="btnTipo" id="flexRadioDefault2" value="productos cabello" {% if producto[3] == "productos cabello" %}
+                                checked {% endif %}>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    2. Productos para cabello
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="btnTipo" id="flexRadioDefault3" value="perfumes" {% if producto[3] == "perfumes" %}
+                                checked {% endif %}>
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    3. Perfumes
+                                </label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="txtCan" class="form-label">Cantidad de productos</label>
+                            <input type="number"
+                              class="form-control" name="txtCan" id="txtCan" aria-describedby="helpId" placeholder="Escriba la cantidad del producto" value="{{producto[4]}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtPre" class="form-label">Precio del producto</label>
+                            <input type="number"
+                              class="form-control" name="txtPre" id="txtPre" aria-describedby="helpId" placeholder="Escriba el precio del producto" value="{{producto[6]}}" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    Footer
+                </div>
+            </div>
+            <br>
+
+        </div>
+
+        <div class="col-md-7">
+
+            <div class="table-responsive">
+                <div class="text-center">
+                    <h3 class="text-primary">Productos en inventario</h3>
+                </div>
+                <table class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>Tipo</th>
+                            <th>Cantidad</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{producto[0]}}</td>
+                            <td>{{producto[1]}}</td>
+                            <td>
+                                <img width="60" src="static/assets/img_p/{{producto[2]}}"  type="hidden" class="img-fluid rounded-top" alt="">
+                                {{producto[2]}}
+                            </td>
+                            <td>{{producto[3]}}</td>
+                            <td>{{producto[4]}}</td>
+                            <td>{{producto[5]}}</td>
+                            <td>${{producto[6]}}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+</section>
+
+{% include 'pie.html' %}

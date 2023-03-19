@@ -1,0 +1,144 @@
+{% include 'cabecera.html' %}
+<br> <br> <br><br> <br>
+
+<section class="container"></section>
+    
+    <div class="row">
+        <!-- <div class="text-center">
+            <h1 class="text-primary card-title mb-4">Gestion de productos</h1>
+        </div> -->
+        <!-- <div class="col-md-0"></div> -->
+        <div class="col-md-4" id="columna">
+            <div class="text-center">
+                <h3 class="text-primary">Agregar Producto</h3>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Ingrese los Datos del nuevo producto
+                </div>
+                <div class="card-body">
+                    <form action="/guardar" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <label for="txtNombre" class="form-label">Nombre:</label>
+                          <input type="text"
+                            class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Ingrese el nombre del producto" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="txtImagen" class="form-label">Imagen:</label>
+                          <input type="file"
+                            class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione la imagen" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="txtdes" class="form-label">Descripción del producto</label>
+                          <input type="text"
+                            class="form-control" name="txtdes" id="txtdes" aria-describedby="helpId" placeholder="Escriba una descripcion del producto" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="Tipo" class="form-label">Tipo de producto</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="btnTipo" id="flexRadioDefault1" value="productos faciales" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    1. productos faciales
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="btnTipo" id="flexRadioDefault2" value="productos cabello">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    2. Productos para cabello
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="btnTipo" id="flexRadioDefault3" value="perfumes">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    3. Perfumes
+                                </label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="txtCan" class="form-label">Cantidad de productos</label>
+                            <input type="number"
+                              class="form-control" name="txtCan" id="txtCan" aria-describedby="helpId" placeholder="Escriba la cantidad del producto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtPre" class="form-label">Precio del producto</label>
+                            <input type="number"
+                              class="form-control" name="txtPre" id="txtPre" aria-describedby="helpId" placeholder="Escriba el precio del producto" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    Footer
+                </div>
+            </div>
+            <br>
+
+        </div>
+
+        <div class="col-md-7">
+
+            <div class="table-responsive">
+                <div class="text-center">
+                    <h3 class="text-primary">Productos en inventario</h3>
+                </div>
+                <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>Tipo</th>
+                            <th>Cantidad</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Gestionar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr>
+                            <td>{{producto[0]}}</td>
+                            <td>{{producto[1]}}</td>
+                            <td>
+                                <img width="60" src="static/assets/img_p/{{producto[2]}}"  type="hidden" class="img-fluid rounded-top" alt="">
+                                {{producto[2]}}
+                            </td>
+                            <td>{{producto[3]}}</td>
+                            <td>{{producto[4]}}</td>
+                            <td>{{producto[5]}}</td>
+                            <td>{{producto[6]}}</td>
+                            <!-- <td> <a href="">Modificar </a> </td> -->
+                            <td>
+                                <form action="/modificar_catalogo" method="post">
+                                    <input value="{{producto[0]}}" type="hidden" name="txtID" id="txtID">
+                                        <button type="submit" class="btn btn-warning">Editar</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/borrar" method="post">
+                                    <input value="{{producto[0]}}" type="hidden" name="txtID" id="txtID">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro quiere eliminar el producto?')">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+</section>
+<br><br>
+
+{% include 'pie.html' %}

@@ -1,0 +1,105 @@
+{% include 'cabecera.html' %} <!--esto es de flask-->
+<br> <br> <br> <br> <br>
+<div class="p-5 mb-4 bg-light">
+    <div class="container">
+      <h1 class="display-3">Proceder a la compra</h1>
+      <p class="lead">Por favor ingrese sus datos</p>
+      <hr class="my-2">
+      
+    </div>
+  </div>
+
+ 
+      <div class="container">
+          <!-- Outer Row -->
+          <div class="row justify-content-center">
+              <div class="col-xl-10 col-lg-12 col-md-9 bg-gradient-primary"
+                  style="margin-top: 20px; border-radius: 40px;">
+                  <div class="card o-hidden border-0 shadow-lg my-5" style="border-radius: 40px;">
+                      <div class="card-body p-0">
+                          <!-- Nested Row within Card Body -->
+                          <div class="row">
+                              <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                                  <img class="card-img-top" src="static/assets/img/aseopersonal.png" width="500px"
+                                      alt="Title">
+                                  <!-- <div class="text-center">
+                                      <a class="btn btn-primary btn-user btn-block" href="/login">Iniciar Sesión!</a>
+  
+                                  </div> -->
+                              </div>
+  
+  
+                              <div class="col-lg-6">
+                                  <div class="p-5">
+                                      <div class="text-center">
+                                          <h1 class="text-primary card-title mb-4">Dirección de envío</h1>
+                                      </div>
+                                      <form action="/validar_compra" class="user" id="form1" name="form1" method="post"
+                                          role="form">
+  
+                                          <hr>
+                                          <div class="form-group">
+                                              <label for="direccion"><span class="glyphicon glyphicon-user"></span>
+                                                  Dirección de envío</label>
+                                              <input name="direccion" type="text" id="direccion"
+                                                  class="form-control form-control-user" placeholder="Ingrese la direccion de envío"
+                                                  required="">
+                                          </div>
+                                          
+                                          <div class="form-group">
+                                              <label for="identificacion"><span class="glyphicon glyphicon-user"></span>
+                                                  No de Identificación</label>
+                                              <input name="identificacion" type="number" id="identificacion"
+                                                  class="form-control form-control-user"
+                                                  placeholder="Ingrese el No de Identificación" {% if 'login' in session %} value="{{session['cedula']}}" {% endif %} required="">
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="nombres"><span class="glyphicon glyphicon-user"></span>
+                                                  Nombres</label>
+                                              <input name="nombres" type="text" id="nombres"
+                                                  class="form-control form-control-user" placeholder="Ingrese sus nombres" {% if 'login' in session %} value="{{session['nombre']}}" {% endif %}
+                                                  required="">
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="apellidos"><span class="glyphicon glyphicon-user"></span>
+                                                  Apellidos</label>
+                                              <input name="apellidos" type="text" id="apellidos"
+                                                  class="form-control form-control-user"
+                                                  placeholder="Ingrese sus apellidos" {% if 'login' in session %} value="{{session['apellido']}}" {% endif %} required="">
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="celular"><span class="glyphicon glyphicon-user"></span>
+                                                  No de celular</label>
+                                              <input name="celular" type="number" id="celular"
+                                                  class="form-control form-control-user"
+                                                  placeholder="Ingrese el No de celular" {% if 'login' in session %} value="{{session['celular']}}" {% endif %} required="">
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="email"><span class="glyphicon glyphicon-user"></span>
+                                                  Email</label>
+                                              <input name="email" type="email" id="email"
+                                                  class="form-control form-control-user"
+                                                  placeholder="Ingrese el correo electrónico" {% if 'login' in session %} value="{{session['email']}}" {% endif %} required="">
+                                          </div>
+  
+                                          <br>
+                                          <button type="submit" class="btn btn-success btn-user btn-block"><span
+                                                  class="glyphicon glyphicon-off"></span> Confirmar Compra</button>
+                                      </form>
+                                      <hr>
+  
+  
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+  
+              </div>
+  
+          </div>
+  
+      </div>
+  
+
+{% include 'pie.html' %} 

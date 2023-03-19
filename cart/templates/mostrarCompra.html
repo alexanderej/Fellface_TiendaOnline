@@ -1,0 +1,50 @@
+{% include 'cabecera.html' %} <!--esto es de flask-->
+<br> <br> <br> <br> <br>
+<div class="p-5 mb-4 bg-light">
+    <div class="container">
+      <h1 class="display-3">Detalles de su compra</h1>
+      <p class="lead">Información sobre la compra realizada</p>
+      <hr class="my-2">
+      <p class="lead">Fecha de compra: {{fecha}}</p>
+      <p class="lead">Cliente: {{cliente}}</p>
+      <p class="lead">CC: {{cedula}}</p>
+      <p class="lead">Dirección de envío: {{direccion}}</p>
+      <p class="lead">Celular: {{celular}}</p>
+      <p class="lead">Correo: {{_email}}</p>
+      <p class="lead">Total a pagar: $ {{pagar}}</p>
+
+      
+    </div>
+  </div>
+
+  <div class="row">
+    {% for producto in compras %}
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="static/assets/img_p/{{ producto[1] }}" alt="Title">
+            <div class="card-body">
+                <h4 class="card-title">{{ producto[0] }}</h4>
+                <p class="card-text">Cantidad: {{ producto[3] }} unidades</p>
+                <p class="card-text">Precio: $ {{ producto[4] }}</p>
+                <p class="card-text">Tipo: {{ producto[2] }}</p>
+                <p class="card-text"></p>
+               
+            </div>
+            
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<!-- 
+<p class="lead text-center">
+  <form action="{{url_for('cart.generar_pdf' )}}" method="post">
+    <input type="text" value="{{_email}}" name="email" hidden>
+    <input type="text" value="{{idcarrito}}" name="idcarrito" hidden>
+    <button type="submit" class="btn btn-info"> Get pdf</button>
+</form>
+
+</p>
+-->
+
+{% include 'pie.html' %} 
